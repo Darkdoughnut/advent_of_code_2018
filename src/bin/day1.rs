@@ -1,15 +1,15 @@
 use std::fs::File;
-use std::io::prelude::*;
-use std::io::{BufRead, BufReader, Result};
+use std::io::{self, BufRead, BufReader};
 
-fn main() -> Result<()> {
-		let result = 0; 
+fn main() -> io::Result<()> {
+	let mut result = 0;
+	let file = File::open("input/day1")?;
 
-		let filename = "input";
-		let file = File::open(filename);
-	
-		for line in BufReader::new(file).lines() {
-        let char_vec:Vec<char> = line.chars().collect();
-    }
+	for line in BufReader::new(file).lines() {
+		let num: i64 = line?.parse().unwrap();
+		result += num;
+	}
+	println!("{}", result);
 
+	Ok(())
 }
