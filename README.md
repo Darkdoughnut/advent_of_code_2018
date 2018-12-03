@@ -1,7 +1,7 @@
 # # Advent of code 2018
 
 My run of this [event](https://adventofcode.com/2018) in Rust. 
-Shoutout to [porglezomp](https://gist.github.com/PurpleBooth/109311bb0361f32d87a2).
+Shoutout to [porglezomp](https://gist.github.com/porglezomp).
 
 ## Getting Started
 
