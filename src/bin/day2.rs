@@ -51,11 +51,9 @@ fn find_similar_words<B: BufRead>(reader: B) -> () {
         package_ids.push(line.unwrap());
     }
     for line in package_ids {
-        let mut found_word = false;
         for word in &word_bank {
             if is_correct_hamming_distance(word.clone(), &line.clone()) {
                 println!("{:?}", word);
-                found_word = true;
             }
         }
         word_bank.push(line);
