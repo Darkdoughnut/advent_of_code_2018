@@ -42,7 +42,7 @@ fn scan_word_for_n(word: &str, count: usize) -> i64 {
     return 0;
 }
 
-fn find_similar_words<B: BufRead>(reader: B) -> String {
+fn find_similar_words<B: BufRead>(reader: B) -> () {
     // When inserting a word in the trie, a \n character
     // will signify the end of the word
     let mut word_bank: Vec<String> = Vec::new();
@@ -51,16 +51,14 @@ fn find_similar_words<B: BufRead>(reader: B) -> String {
         package_ids.push(line.unwrap());
     }
     for line in package_ids {
-        let mut found_word = false;
         for word in &word_bank {
             if is_correct_hamming_distance(word.clone(), &line.clone()) {
                 println!("{:?}", word);
-                found_word = true;
             }
         }
         word_bank.push(line);
     }
-    return "Hi".to_string();
+    return;
 }
 
 fn is_correct_hamming_distance(first: String, second: &String) -> bool {
