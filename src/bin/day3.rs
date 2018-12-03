@@ -53,6 +53,28 @@ fn main() {
     println!("Total overlapping fabric in sq. in: {}", overlap_claims);
 
     println!("----- Part 2 -----");
+    // Find a position where every value in the fabric is 1
+    for pos in &positions {
+        let start_i = pos.top_margin;
+        let start_j = pos.left_margin;
+        let mut invalid_claim = false;
+        for x in 0..pos.height {
+            for y in 0..pos.width {
+                if fabric[(start_i + x) as usize][(start_j + y) as usize] != 1 {
+                    invalid_claim = true;
+                    break;
+                }
+            }
+            if invalid_claim {
+                break;
+            }
+        }
+        if !invalid_claim {
+            // Found non-overlapping claim
+            println!("Found valid non-overlapping claim!");
+            println!("Claim id: {}", pos.id);
+        }
+    }
 }
 
 fn convert_line_to_position(line: String) -> Position {
