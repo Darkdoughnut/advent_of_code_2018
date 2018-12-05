@@ -133,6 +133,22 @@ fn main() {
     println!("Solution: {}", (best_guard_minute as u32) * best_guard_num);
 
     println!("----- Part 2 -----");
+    let mut best_guard_num = 0;
+    let mut best_guard_minute = 0;
+    let mut most_guard_minute_instance = 0;
+    for (guard_id, curr_guard_info) in guard_info.clone() {
+        let best_total_sleep = &curr_guard_info.sleep_count;
+        for x in 0..59 {
+            if best_total_sleep[x] > most_guard_minute_instance {
+                best_guard_num = guard_id;
+                best_guard_minute = x;
+                most_guard_minute_instance = best_total_sleep[x];
+            }
+        }
+    }
+    println!("Guard id: {}", best_guard_num);
+    println!("Best minute: {}", best_guard_minute);
+    println!("Solution: {}", (best_guard_minute as u32) * best_guard_num);
 }
 
 #[test]
