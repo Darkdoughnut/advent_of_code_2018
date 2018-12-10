@@ -23,6 +23,12 @@ fn in_range(curr_point: (i32, i32), max_point: (i32, i32)) -> bool {
     true
 }
 
+fn get_manhattan_dist(first: (i32, i32), second: (i32, i32)) -> i32 {
+    let x = (first.0 - second.0).abs();
+    let y = (first.1 - second.1).abs();
+    return x + y;
+}
+
 fn main() {
     println!("----- Part 1 -----");
     let file = File::open("input/day6").expect("Unable to open file.");
@@ -195,15 +201,32 @@ fn main() {
 
     // Get largest area
     let mut best_area = 0;
-    for (id, area) in total_area_by_id {
-        println!("Curr id/area: {}/{}", id, area);
-        if area > best_area {
-            best_area = area;
+    for (id, area) in &total_area_by_id {
+        // println!("Curr id/area: {}/{}", id, area);
+        if area > &best_area {
+            best_area = *area;
         }
     }
     println!("Best area: {}", best_area);
 
     println!("----- Part 2 -----");
+    let MAX_TOTAL_DIST = 10000;
+    let mut region_size = 0;
+    for x in 0..max_point.0 {
+        for y in 0..max_point.1 {
+            let mut total_area = 0;
+            for point in &points {
+                total_area += get_manhattan_dist((x, y), *point);
+                if total_area > MAX_TOTAL_DIST {
+                    break;
+                }
+            }
+            if total_area < MAX_TOTAL_DIST {
+                region_size += 1;
+            }
+        }
+    }
+    println!("Region size: {}", region_size );
 }
 
 #[test]
