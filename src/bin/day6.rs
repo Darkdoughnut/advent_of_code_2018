@@ -201,7 +201,7 @@ fn main() {
 
     // Get largest area
     let mut best_area = 0;
-    for (id, area) in &total_area_by_id {
+    for (_id, area) in &total_area_by_id {
         // println!("Curr id/area: {}/{}", id, area);
         if area > &best_area {
             best_area = *area;
@@ -210,7 +210,7 @@ fn main() {
     println!("Best area: {}", best_area);
 
     println!("----- Part 2 -----");
-    let MAX_TOTAL_DIST = 10000;
+    const MAX_TOTAL_DIST: i32 = 10000;
     let mut region_size = 0;
     for x in 0..max_point.0 {
         for y in 0..max_point.1 {
@@ -226,7 +226,7 @@ fn main() {
             }
         }
     }
-    println!("Region size: {}", region_size );
+    println!("Region size: {}", region_size);
 }
 
 #[test]
