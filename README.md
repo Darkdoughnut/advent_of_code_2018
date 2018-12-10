@@ -1,4 +1,4 @@
-# # Advent of code 2018
+## Advent of code 2018
 
 My run of this [event](https://adventofcode.com/2018) in Rust. 
 Shoutout to [porglezomp](https://gist.github.com/porglezomp).
