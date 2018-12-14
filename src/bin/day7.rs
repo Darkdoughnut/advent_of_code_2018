@@ -61,6 +61,27 @@ fn main() {
     print!("\n");
 
     println!("----- Part 2 -----");
+    let file = File::open("input/day7").expect("Unable to open file.");
+    let reader = BufReader::new(file);
+
+    let mut dag = vec![[false; ALPHABET_SIZE]; ALPHABET_SIZE];
+    let mut node_edge_count = vec![-1 as i32; ALPHABET_SIZE];
+    for line in reader.lines() {
+        let line = line.expect("Error reading line");
+        let edge: (u16, u16) = get_edge_from_string(line);
+        dag[edge.0 as usize][edge.1 as usize] = true;
+        if node_edge_count[edge.0 as usize] == -1 {
+            node_edge_count[edge.0 as usize] = 0;
+        }
+        if node_edge_count[edge.1 as usize] == -1 {
+            node_edge_count[edge.1 as usize] = 0;
+        }
+        // Add to edge count
+        node_edge_count[edge.1 as usize] += 1;
+    }
+
+    let mut dijkstra = vec![(); ALPHABET_SIZE];
+
 }
 
 #[test]
